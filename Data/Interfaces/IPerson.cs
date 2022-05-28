@@ -1,4 +1,5 @@
 ﻿using SoundLibrary.Data.Models;
+using SoundLibrary.Data.Models.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -7,13 +8,13 @@ namespace SoundLibrary.Data.Interfaces
     public interface IPerson
     {
         // CREATE
-        Task<Person> Create(Person person);
+        Task<PersonDTO> Create(NewPersonDTO newPersonDTO);
 
         // GET ALL
-        Task<List<Person>> GetPersons();
+        Task<List<PersonDTO>> GetPersons();
 
         // GET ONE BY ID
-        Task<Person> GetPerson(int id);
+        Task<PersonDTO> GetPerson(int id);
 
         // UPDATE
         Task<Person> UpdatePerson(int id, Person person);

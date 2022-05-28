@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SoundLibrary.Data;
 using SoundLibrary.Data.Interfaces;
 using SoundLibrary.Data.Models;
+using SoundLibrary.Data.Models.DTO;
 
 namespace SoundLibrary.Controllers
 {
@@ -32,10 +33,10 @@ namespace SoundLibrary.Controllers
 
         // GET: api/Persons/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(int id)
+        public async Task<ActionResult<PersonDTO>> GetPerson(int id)
         {
-            Person person = await _person.GetPerson(id);
-            return Ok(person);
+            PersonDTO personDTO = await _person.GetPerson(id);
+            return Ok(personDTO);
         }
 
         // PUT: api/Persons/5
@@ -61,10 +62,10 @@ namespace SoundLibrary.Controllers
         // POST: api/Persons
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Person>> PostPerson(Person person)
+        public async Task<ActionResult<Person>> PostPerson(NewPersonDTO newPersonDTO)
         {
-            await _person.Create(person);
-            return CreatedAtAction("GetPerson", new { id = person.Id }, person);
+            PersonDTO personDTO = await _person.Create(newPersonDTO);
+            return CreatedAtAction("GetPerson", new { id = personDTO.Id }, personDTO);
         }
 
         // DELETE: api/Persons/5
